@@ -35,7 +35,7 @@
                     <!-- Form actions -->
                     <div class="form-group">
                       <div class="col-md-12 text-left">
-                        <button type="button" class="btn btn-primary btn-lg btn-enviar" onclick="criptografar()">Cifrar</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-enviar" onclick="criptografar()">Decifrar</button>
                       </div>
                     </div>
                   </fieldset>
@@ -62,7 +62,7 @@
 
   <script>
 	  function criptografar() {
-		$(".msg").html(cifrar($("#message").val(), $("#chave").val()));
+		$(".msg").html(decifrar($("#message").val(), $("#chave").val()));
 	  }
   </script>
 

@@ -1,30 +1,26 @@
-var alfaBeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var alfaBeto =  ' !"#$%&'+"'"+'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
 
 function cifrar(msg, chave) {
-    var words = msg.split(" ");
-    var aux = chave.toUpperCase();
     var msgCifrada = "";
     var index = 0;
+    var words = msg.split("\n");
     
     // Faz a troca das letras
     for (var i = 0; i < words.length; i++) {
-        for (var j = 0; j < words[i].length; j++) {
-            if (alfaBeto.indexOf(words[i][j].toUpperCase()) >= 0) {
-                if (alfaBeto.indexOf(words[i][j]) >= 0) {
-                    msgCifrada += alfaBeto[(alfaBeto.indexOf(words[i][j].toUpperCase())+alfaBeto.indexOf(chave[index].toUpperCase()))%26];
-                } else {
-                    msgCifrada += alfaBeto[(alfaBeto.indexOf(words[i][j].toUpperCase())+alfaBeto.indexOf(chave[index].toUpperCase()))%26].toLowerCase();
-                }
+        for (let j = 0; j < words[i].length; j++) {
+            if (alfaBeto.indexOf(words[i][j]) >= 0) {
+                msgCifrada += alfaBeto[(alfaBeto.indexOf(words[i][j])+alfaBeto.indexOf(chave[index]))%alfaBeto.length];
+                index++;
+            } else {
+                msgCifrada += words[i][j];
             }
-
-            index++;
-            if (index >= aux.length) {
+            
+            if (index >= chave.length) {
                 index = 0;
-            }        
+            }
         }
 
-        // Separa as palavras com espaço
-        msgCifrada += " ";
+        msgCifrada += "<br>";
     }
 
     // Retorna a mensagem cifrada
